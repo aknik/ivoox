@@ -17,9 +17,14 @@ def urlify(s):
 
 agent = '"iVoox/2.15(134) (Linux; Android 7.2; Scale/1.0)"'
 url1  = "http://api.ivoox.com/1-1/"
-url2  = "?function=getSuscriptionAudios&format=json&session=32661612065&page=1&idSuscription=8511076&unread=0"
-
-r = requests.get(url1+url2)
+url2  = "?function=getSuscriptionAudios&format=json&session=3266161206577&page=1&idSuscription=8511076&unread=0"
+headers = {
+    'User-Agent': agent,
+    'Accept-Encoding': 'gzip',
+    'accept-language': 'es-ES',
+    'Connection': 'Keep-Alive',
+}
+r = requests.get(url1+url2, headers=headers)
 json = r.json()
 i = 0
 
@@ -31,4 +36,3 @@ for row in json:
     savefile = './Podcasts/Skylab/' + filename.split("_")[0] + '.mp3'
     os.system ('wget --user-agent='+ agent +' -c ' + file + ' -O ' + savefile )
     print filename
-

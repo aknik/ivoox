@@ -1,4 +1,6 @@
 # Descarga los podcast subscritos que se han publicado "hoy"
+# Para python 3
+
 import time,os,re,requests,json
 
 def urlify(s):
@@ -28,7 +30,13 @@ for row in json:
     podcasttitle = urlify(row['podcasttitle'])
     file = str(row['file'])
     filename = os.path.basename(file)
+    print (row['datetext'],filename)
+
     savefile = './Podcasts/' + filename.split("_")[0] + '.mp3'
-    if row['datetext'] == 'Hoy':
+    if (row['datetext'] == 'hace 8 días' ):
+        if os.path.isfile(savefile):        
+            os.remove(savefile) 
+    if (row['datetext'] == 'hace 1 día' or row['datetext'] == 'Hoy'):
         os.system ('wget --user-agent='+ agent +' -c ' + file + ' -O ' + savefile )
-        print filename
+        print (filename)
+

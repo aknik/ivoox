@@ -1,3 +1,5 @@
+# DESCARGA UNA SUSCRIPCION A PODCAST COMPLETA. TODOS LOS EPISODIOS
+# VA DE LA PAGINA 1 A LA n descargando los episodios.   for page in range(0, 10):
 import time,os,re,requests,json
 
 def urlify(s):

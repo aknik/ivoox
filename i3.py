@@ -11,6 +11,7 @@ def urlify(s):
      s = re.sub(r"\s+", '_', s)
      return s
 
+# No uso la descarga del fichero con requests, pero aqui lo dejo :-))
 def download_file(url,savefile):
     r = requests.get(url, stream=True)
     with open(savefile, 'wb') as f:

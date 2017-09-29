@@ -22,11 +22,21 @@ for page in range(0, 10):
 		'accept-language': 'es-ES',
 		'Connection': 'Keep-Alive',
 	}
-	r = requests.get(url1+url2, headers=headers)
-	json = r.json()
+	
+
 	i = 0
 
-	for row in json:
+	while True:
+
+	    r = requests.get(url1+url2, headers=headers)
+	    if r.status_code == 200 or i > 9:
+		break
+	    i += 1
+	    time.sleep(3+i)
+
+	i = 0
+
+	for row in r.json():
 		i += 1
 		#podcasttitle = urlify(row['podcasttitle'])
 		file = str(row['file'])
